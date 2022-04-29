@@ -22,17 +22,18 @@ class NotesStore {
   }
 
   addNoteToLocalStorage() {
-    localStorage.setItem("notes", JSON.stringify(this.showNotes()));
+    localStorage.setItem('notes', JSON.stringify(this.showNotes()));
   }
 
   getNotesFromLocalStorage() {
-    const notes = JSON.parse(localStorage.getItem("notes"));
+    const notes = JSON.parse(localStorage.getItem('notes'));
+
     if (notes === null) {
-      localStorage.setItem("notes", []);
+      localStorage.setItem('notes', []);
     } else {
       for (const { title, text, id, date } of notes) {
-        const notee = new Note(title, text, id, date);
-        this.addNote(notee);
+        const note = new Note(title, text, id, date);
+        this.addNote(note);
       }
     }
   }
@@ -44,25 +45,25 @@ class NotesStore {
   }
 
   createNote(note) {
-    const newNote = document.createElement("div");
+    const newNote = document.createElement('div');
 
-    const delBtn = document.createElement("button");
-    delBtn.addEventListener("click", (e) => {
+    const delBtn = document.createElement('button');
+    delBtn.addEventListener('click', (e) => {
       const div = e.target.parentNode;
       const { id } = e.target.parentNode.dataset;
       this.removeNote(id);
       document.body.removeChild(div);
     });
-    delBtn.classList.add("delBtn");
-    delBtn.textContent = "Usuń";
+    delBtn.classList.add('delBtn');
+    delBtn.textContent = 'Usuń';
 
     newNote.appendChild(delBtn);
 
     newNote.dataset.id = note.id;
-    const noteTitle = document.createElement("h1");
+    const noteTitle = document.createElement('h1');
     noteTitle.textContent = note.title;
     newNote.appendChild(noteTitle);
-    const noteText = document.createElement("p");
+    const noteText = document.createElement('p');
     noteText.textContent = note.text;
     newNote.appendChild(noteText);
 
