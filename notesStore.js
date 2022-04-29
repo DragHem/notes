@@ -27,9 +27,13 @@ class NotesStore {
 
   getNotesFromLocalStorage() {
     const notes = JSON.parse(localStorage.getItem("notes"));
-    for (const { title, text, id, date } of notes) {
-      const notee = new Note(title, text, id, date);
-      this.addNote(notee);
+    if (notes === null) {
+      localStorage.setItem("notes", []);
+    } else {
+      for (const { title, text, id, date } of notes) {
+        const notee = new Note(title, text, id, date);
+        this.addNote(notee);
+      }
     }
   }
 
