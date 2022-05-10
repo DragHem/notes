@@ -1,3 +1,5 @@
+import Note from './note.js';
+
 class NotesStore {
   constructor() {
     this.notesTab = [];
@@ -11,6 +13,10 @@ class NotesStore {
 
   getLength() {
     return this.length;
+  }
+
+  getNote(id) {
+    return this.notesTab.find((note) => note.id === Number(id));
   }
 
   setNotes(notes) {
@@ -29,52 +35,58 @@ class NotesStore {
     const notes = JSON.parse(localStorage.getItem('notes'));
 
     if (notes === null) {
-      localStorage.setItem('notes', []);
+      localStorage.setItem('notes', JSON.stringify([]));
     } else {
-      for (const { title, text, id, date } of notes) {
+      for (const {
+        title, text, id, date,
+      } of notes) {
         const note = new Note(title, text, id, date);
         this.addNote(note);
       }
     }
   }
 
-  restoreNotes() {
-    for (const note of this.showNotes()) {
-      this.createNote(note);
-    }
-  }
+  // displayNotes() {
+  //   for (const note of this.showNotes()) {
+  //     this.createNote(note);
+  //   }
+  // }
 
-  createNote(note) {
-    const newNote = document.createElement('div');
-
-    const delBtn = document.createElement('button');
-    delBtn.addEventListener('click', (e) => {
-      const div = e.target.parentNode;
-      const { id } = e.target.parentNode.dataset;
-      this.removeNote(id);
-      document.body.removeChild(div);
-    });
-    delBtn.classList.add('delBtn');
-    delBtn.textContent = 'Usuń';
-
-    newNote.appendChild(delBtn);
-
-    newNote.dataset.id = note.id;
-    const noteTitle = document.createElement('h1');
-    noteTitle.textContent = note.title;
-    newNote.appendChild(noteTitle);
-    const noteText = document.createElement('p');
-    noteText.textContent = note.text;
-    newNote.appendChild(noteText);
-
-    document.body.appendChild(newNote);
-  }
+  // createNote(note) {
+  //   const newNote = document.createElement('div');
+  //   newNote.classList.add('note');
+  //
+  //   newNote.addEventListener('dblclick', (e) => {
+  //     const { id } = e.target.dataset;
+  //     this.removeNote(id);
+  //     document.querySelector('.notes').removeChild(newNote);
+  //   });
+  //
+  //   newNote.dataset.id = note.id;
+  //
+  //   const noteTitle = document.createElement('h2');
+  //   noteTitle.textContent = 'New note title...';
+  //   newNote.appendChild(noteTitle);
+  //
+  //   const noteText = document.createElement('p');
+  //   noteText.textContent = 'New note text...';
+  //   newNote.appendChild(noteText);
+  //
+  //   const noteDate = document.createElement('p');
+  //   noteDate.classList.add('date');
+  //   noteDate.textContent = note.date;
+  //   newNote.appendChild(noteDate);
+  //
+  //   document.querySelector('.notes').appendChild(newNote);
+  // }
 
   removeNote(id) {
     const filteredNotes = this.notesTab.filter(
-      (note) => note.id !== Number(id)
+      (note) => note.id !== Number(id),
     );
     this.setNotes(filteredNotes);
     this.addNoteToLocalStorage();
   }
 }
+
+export default NotesStore;

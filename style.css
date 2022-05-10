@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+* {
+  scrollbar-width: thin;
+  background-color: rgba(155, 155, 155, 0.5) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(47, 47, 47, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+.wrapper .left-section {
+  background-color: #8e989e;
+  flex-basis: 20rem;
+  overflow-y: scroll;
+}
+.wrapper .left-section button {
+  display: block;
+  width: 80%;
+  font-size: 2rem;
+  padding: 1rem 0.2rem;
+  border: none;
+  border-radius: 1.6rem;
+  margin: 1rem auto;
+  background-color: #ebebeb;
+}
+.wrapper .left-section .notes .note {
+  padding: 1rem;
+  margin: 0.2rem 0;
+  background-color: #ebebeb;
+}
+.wrapper .left-section .notes .note h2 {
+  font-size: 1.8rem;
+  pointer-events: none;
+}
+.wrapper .left-section .notes .note p {
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+.wrapper .left-section .notes .note .date {
+  text-align: right;
+  font-size: 0.8rem;
+}
+.wrapper .left-section .notes .note:hover {
+  background-color: red;
+}
+.wrapper .right-section {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper .right-section input {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  font-size: 4em;
+  border: 1px solid white;
+}
+.wrapper .right-section input:focus,
+.wrapper .right-section textarea:focus {
+  outline: none;
+  border-bottom: 1px solid black;
+}
+.wrapper .right-section textarea {
+  resize: none;
+  border: none;
+  font-size: 3em;
+  width: 100%;
+  height: auto;
+  flex-grow: 1;
+}
+
+/*# sourceMappingURL=style.css.map */

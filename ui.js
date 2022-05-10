@@ -1,18 +1,39 @@
-const store = new NotesStore();
-store.getNotesFromLocalStorage();
-store.restoreNotes();
+class Ui {
+  static displayNotes(store) {
+    for (const note of store.showNotes()) {
+      Ui.createNote(store, note);
+    }
+  }
 
-const addBtn = document.querySelector("button");
-const title = document.querySelector("input[id=title]");
-const text = document.querySelector("input[id=text]");
+  static createNote(store, {
+    id, title, text, date,
+  }) {
+    const newNote = document.createElement('div');
+    newNote.classList.add('note');
 
-addBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  const note = new Note(title.value, text.value);
-  store.createNote(note);
-  store.addNote(note);
-  store.addNoteToLocalStorage();
+    newNote.addEventListener('dblclick', (e) => {
+      const { id } = e.target.dataset;
+      store.removeNote(id);
+      document.querySelector('.notes').removeChild(newNote);
+    });
 
-  title.value = "";
-  text.value = "";
-});
+    newNote.dataset.id = id;
+
+    const noteTitle = document.createElement('h2');
+    noteTitle.textContent = title === '' ? 'New note title...' : title;
+    newNote.appendChild(noteTitle);
+
+    const noteText = document.createElement('p');
+    noteText.textContent = text === '' ? 'New note text...' : text;
+    newNote.appendChild(noteText);
+
+    const noteDate = document.createElement('p');
+    noteDate.classList.add('date');
+    noteDate.textContent = date;
+    newNote.appendChild(noteDate);
+
+    document.querySelector('.notes').appendChild(newNote);
+  }
+}
+
+export default Ui;
