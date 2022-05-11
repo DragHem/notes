@@ -2,9 +2,11 @@
   "name": "notatnik",
   "version": "1.0.0",
   "description": "Simple note app",
-  "main": "index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "source": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build"
   },
   "author": "Damian P",
   "license": "ISC",
@@ -12,6 +14,7 @@
     "eslint": "^8.14.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "parcel": "^2.5.0",
     "prettier": "2.6.2"
   }
 }
