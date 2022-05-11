@@ -2,8 +2,6 @@ import NotesStore from './notesStore.js';
 import Note from './note.js';
 import Ui from './ui.js';
 
-let notes;
-let active;
 const store = new NotesStore();
 store.getNotesFromLocalStorage();
 Ui.displayNotes(store);
@@ -11,37 +9,41 @@ Ui.displayNotes(store);
 const addBtn = document.querySelector('button');
 const title = document.querySelector('input[id=title]');
 const text = document.querySelector('textarea[id=text]');
-
-notes = document.querySelectorAll('.note');
-
-const removeActive = (items) => {
-  items.forEach((item) => item.classList.remove('active'));
-};
+const notes = document.querySelectorAll('.notes');
+// const
 
 notes.forEach((note) => {
-  note.addEventListener('click', (e) => {
-    const { id } = e.target.dataset;
+  note.addEventListener('click', () => {
+    const activeNote = Ui.getActiveNote();
 
-    active = store.getNote(id);
-    removeActive(notes);
-    e.target.classList.add('active');
+    title.value = activeNote.getTitle();
+    text.value = activeNote.getText();
   });
 });
 
 addBtn.addEventListener('click', () => {
+  title.value = '';
+  text.value = '';
   const note = new Note(title.value, text.value);
   Ui.createNote(store, note);
   store.addNote(note);
   store.addNoteToLocalStorage();
-  notes = document.querySelectorAll('.note');
 });
 
 title.addEventListener('input', (e) => {
-  active.setTitle(e.target.value);
+  const activeNote = Ui.getActiveNote();
+  if (activeNote !== undefined) Ui.activeNote.setTitle(e.target.value);
   store.addNoteToLocalStorage();
+
+  const noteDiv = Ui.getActiveNoteDiv();
+  if (noteDiv.title) noteDiv.title.textContent = e.target.value;
 });
 
 text.addEventListener('input', (e) => {
-  active.setText(e.target.value);
+  const activeNote = Ui.getActiveNote();
+  if (activeNote !== undefined) Ui.activeNote.setText(e.target.value);
   store.addNoteToLocalStorage();
+
+  const noteDiv = Ui.getActiveNoteDiv();
+  if (noteDiv.text) noteDiv.text.textContent = e.target.value;
 });

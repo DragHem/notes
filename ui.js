@@ -1,38 +1,70 @@
 class Ui {
+  static activeNote;
+
+  static activeNoteDiv = {};
+
+  static notes = [];
+
   static displayNotes(store) {
     for (const note of store.showNotes()) {
       Ui.createNote(store, note);
     }
   }
 
-  static createNote(store, {
-    id, title, text, date,
-  }) {
+  static createNote(store, note) {
     const newNote = document.createElement('div');
     newNote.classList.add('note');
 
+    newNote.dataset.id = note.id;
+
+    const noteTitle = document.createElement('h2');
+    noteTitle.textContent = note.title === '' ? 'New note title...' : note.title;
+    newNote.appendChild(noteTitle);
+
+    const noteText = document.createElement('p');
+    noteText.textContent = note.text === '' ? 'New note text...' : note.text;
+    newNote.appendChild(noteText);
+
+    const noteDate = document.createElement('p');
+    noteDate.classList.add('date');
+    noteDate.textContent = note.date;
+    newNote.appendChild(noteDate);
+
     newNote.addEventListener('dblclick', (e) => {
+      this.clearInputs();
       const { id } = e.target.dataset;
       store.removeNote(id);
       document.querySelector('.notes').removeChild(newNote);
     });
 
-    newNote.dataset.id = id;
-
-    const noteTitle = document.createElement('h2');
-    noteTitle.textContent = title === '' ? 'New note title...' : title;
-    newNote.appendChild(noteTitle);
-
-    const noteText = document.createElement('p');
-    noteText.textContent = text === '' ? 'New note text...' : text;
-    newNote.appendChild(noteText);
-
-    const noteDate = document.createElement('p');
-    noteDate.classList.add('date');
-    noteDate.textContent = date;
-    newNote.appendChild(noteDate);
+    newNote.addEventListener('click', (e) => {
+      const { id } = e.target.dataset;
+      this.activeNote = store.getNote(id);
+      this.activeNoteDiv.title = noteTitle;
+      this.activeNoteDiv.text = noteText;
+      Ui.removeActive(this.notes);
+      e.target.classList.add('active');
+    });
 
     document.querySelector('.notes').appendChild(newNote);
+    this.notes.push(newNote);
+  }
+
+  static removeActive(items) {
+    items.forEach((item) => item.classList.remove('active'));
+  }
+
+  static getActiveNote() {
+    return this.activeNote;
+  }
+
+  static getActiveNoteDiv() {
+    return this.activeNoteDiv;
+  }
+
+  static clearInputs() {
+    document.querySelector('input[id=title]').value = '';
+    document.querySelector('textarea[id=text]').value = '';
   }
 }
 

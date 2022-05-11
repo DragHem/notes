@@ -53,6 +53,9 @@
 .wrapper .left-section .notes .note h2 {
   font-size: 1.8rem;
   pointer-events: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .wrapper .left-section .notes .note p {
   margin-top: 0.4rem;
@@ -68,7 +71,10 @@
   font-size: 0.8rem;
 }
 .wrapper .left-section .notes .note:hover {
-  background-color: red;
+  background-color: #9f9f9f;
+}
+.wrapper .left-section .notes .note.active {
+  background-color: #868282;
 }
 .wrapper .right-section {
   padding: 2rem;

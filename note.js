@@ -15,8 +15,16 @@ class Note {
     this.title = title;
   }
 
+  getTitle() {
+    return this.title;
+  }
+
   setText(text) {
     this.text = text;
+  }
+
+  getText() {
+    return this.text;
   }
 }
 export default Note;

@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 * {
@@ -22,32 +22,6 @@
   border-radius: 20px;
   border: transparent;
 }
-
-//div {
-//  border: 1px solid black;
-//  display: inline-block;
-//  width: 200px;
-//  margin: 0.2rem;
-//}
-
-//.stacked {
-//  display: grid;
-//
-//  & > * {
-//    grid-columns: 1/2;
-//    grid-row: 1/2;
-//  }
-//}
-
-//.note-grid {
-//  display: grid;
-//  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-//  gap: 0.25rem;
-//
-//  .note {
-//    border: 3px solid hotpink;
-//  }
-//}
 
 .wrapper {
   display: flex;
@@ -79,6 +53,9 @@
         h2 {
           font-size: 1.8rem;
           pointer-events: none;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
 
         p {
@@ -97,7 +74,11 @@
         }
 
         &:hover {
-          background-color: red;
+          background-color: #9f9f9f;
+        }
+
+        &.active {
+          background-color: #868282;
         }
       }
     }

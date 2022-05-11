@@ -46,40 +46,6 @@ class NotesStore {
     }
   }
 
-  // displayNotes() {
-  //   for (const note of this.showNotes()) {
-  //     this.createNote(note);
-  //   }
-  // }
-
-  // createNote(note) {
-  //   const newNote = document.createElement('div');
-  //   newNote.classList.add('note');
-  //
-  //   newNote.addEventListener('dblclick', (e) => {
-  //     const { id } = e.target.dataset;
-  //     this.removeNote(id);
-  //     document.querySelector('.notes').removeChild(newNote);
-  //   });
-  //
-  //   newNote.dataset.id = note.id;
-  //
-  //   const noteTitle = document.createElement('h2');
-  //   noteTitle.textContent = 'New note title...';
-  //   newNote.appendChild(noteTitle);
-  //
-  //   const noteText = document.createElement('p');
-  //   noteText.textContent = 'New note text...';
-  //   newNote.appendChild(noteText);
-  //
-  //   const noteDate = document.createElement('p');
-  //   noteDate.classList.add('date');
-  //   noteDate.textContent = note.date;
-  //   newNote.appendChild(noteDate);
-  //
-  //   document.querySelector('.notes').appendChild(newNote);
-  // }
-
   removeNote(id) {
     const filteredNotes = this.notesTab.filter(
       (note) => note.id !== Number(id),
