@@ -10,10 +10,12 @@ const addBtn = document.querySelector('button');
 const title = document.querySelector('input[id=title]');
 const text = document.querySelector('textarea[id=text]');
 const notes = document.querySelectorAll('.notes');
-// const
 
 notes.forEach((note) => {
   note.addEventListener('click', () => {
+    title.style.display = 'block';
+    text.style.display = 'block';
+
     const activeNote = Ui.getActiveNote();
 
     title.value = activeNote.getTitle();

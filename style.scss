@@ -92,6 +92,7 @@
     flex-direction: column;
 
     input {
+      display: none;
       width: 100%;
       margin-bottom: 0.8rem;
       font-size: 4em;
@@ -105,6 +106,7 @@
     }
 
     textarea {
+      display: none;
       resize: none;
       border: none;
       font-size: 3em;
