@@ -24,8 +24,7 @@ notes.forEach((note) => {
 });
 
 addBtn.addEventListener('click', () => {
-  title.value = '';
-  text.value = '';
+  Ui.clearInputs();
   const note = new Note(title.value, text.value);
   Ui.createNote(store, note);
   store.addNote(note);
@@ -34,7 +33,7 @@ addBtn.addEventListener('click', () => {
 
 title.addEventListener('input', (e) => {
   const activeNote = Ui.getActiveNote();
-  if (activeNote !== undefined) Ui.activeNote.setTitle(e.target.value);
+  if (activeNote !== undefined) activeNote.setTitle(e.target.value);
   store.addNoteToLocalStorage();
 
   const noteDiv = Ui.getActiveNoteDiv();
@@ -43,7 +42,7 @@ title.addEventListener('input', (e) => {
 
 text.addEventListener('input', (e) => {
   const activeNote = Ui.getActiveNote();
-  if (activeNote !== undefined) Ui.activeNote.setText(e.target.value);
+  if (activeNote !== undefined) activeNote.setText(e.target.value);
   store.addNoteToLocalStorage();
 
   const noteDiv = Ui.getActiveNoteDiv();
