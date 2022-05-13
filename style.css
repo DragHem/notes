@@ -56,6 +56,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  user-select: none;
 }
 .wrapper .left-section .notes .note p {
   margin-top: 0.4rem;
@@ -65,10 +66,12 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   pointer-events: none;
+  user-select: none;
 }
 .wrapper .left-section .notes .note .date {
   text-align: right;
   font-size: 0.8rem;
+  user-select: none;
 }
 .wrapper .left-section .notes .note:hover {
   background-color: #9f9f9f;
