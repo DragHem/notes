@@ -47,6 +47,7 @@ class Ui {
     });
 
     document.querySelector('.notes').appendChild(newNote);
+    newNote.click();
     this.notes.push(newNote);
   }
 
