@@ -11,7 +11,7 @@ class Ui {
     }
   }
 
-  static createNote(store, note) {
+  static createNote(store, note, click = false) {
     const newNote = document.createElement('div');
     newNote.classList.add('note');
 
@@ -35,6 +35,13 @@ class Ui {
       const { id } = e.target.dataset;
       store.removeNote(id);
       document.querySelector('.notes').removeChild(newNote);
+
+      const notes = document.querySelectorAll('.note');
+      if (notes) this.notes = [...notes];
+      if (this.notes.length === 0) {
+        document.querySelector('input[id=title]').style.display = 'none';
+        document.querySelector('textarea[id=text]').style.display = 'none';
+      }
     });
 
     newNote.addEventListener('click', (e) => {
@@ -48,7 +55,7 @@ class Ui {
 
     document.querySelector('.notes').appendChild(newNote);
     this.notes.push(newNote);
-    newNote.click();
+    if (click) newNote.click();
   }
 
   static removeActive(items) {

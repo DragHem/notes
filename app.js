@@ -27,7 +27,7 @@ addBtn.addEventListener('click', () => {
   Ui.clearInputs();
   const note = new Note(title.value, text.value);
   store.addNote(note);
-  Ui.createNote(store, note);
+  Ui.createNote(store, note, true);
   store.addNoteToLocalStorage();
 });
 
