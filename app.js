@@ -26,8 +26,8 @@ notes.forEach((note) => {
 addBtn.addEventListener('click', () => {
   Ui.clearInputs();
   const note = new Note(title.value, text.value);
-  Ui.createNote(store, note);
   store.addNote(note);
+  Ui.createNote(store, note);
   store.addNoteToLocalStorage();
 });
 

@@ -18,11 +18,11 @@ class Ui {
     newNote.dataset.id = note.id;
 
     const noteTitle = document.createElement('h2');
-    noteTitle.textContent = note.title === '' ? 'New note title...' : note.title;
+    noteTitle.textContent = note.getTitle() === '' ? 'New note title...' : note.getTitle();
     newNote.appendChild(noteTitle);
 
     const noteText = document.createElement('p');
-    noteText.textContent = note.text === '' ? 'New note text...' : note.text;
+    noteText.textContent = note.getText() === '' ? 'New note text...' : note.getText();
     newNote.appendChild(noteText);
 
     const noteDate = document.createElement('p');
@@ -47,8 +47,8 @@ class Ui {
     });
 
     document.querySelector('.notes').appendChild(newNote);
-    newNote.click();
     this.notes.push(newNote);
+    newNote.click();
   }
 
   static removeActive(items) {
